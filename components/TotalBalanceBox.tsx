@@ -1,6 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
+import DoughnutChart from "./DoughnutChart";
+import AnimatedCounter from "./AnimatedCounter";
 
 // Define the props interface (if you're using TypeScript)
 interface TotalBalanceBoxProps {
@@ -17,25 +19,23 @@ const formatAmount = (amount: number) => {
 const TotalBalanceBox = ({
   accounts = [],
   totalBanks,
-  totalCurrentBalance
+  totalCurrentBalance,
 }: TotalBalanceBoxProps) => {
   return (
-    <section className='total-balance'>
-      <div className='total-balance-chart'>
-        {/* DoughnutChart */}
+    <section className="total-balance">
+      <div className="total-balance-chart">
+        <DoughnutChart accounts={accounts} />
       </div>
 
-      <div className='flex flex-col gap-6'>
-        <h2 className='header-2'>
-          Bank Accounts: {totalBanks} 
-        </h2>
-        <div className='flex flex-col gap-2'>
-          <p className='total-balance-label'>
-            Total Current Balance
-          </p>
-          <p className='total-balance-amount flex-center gap-2'>
-            {formatAmount(totalCurrentBalance)}
-          </p>
+      <div className="flex flex-col gap-6">
+        <h2 className="header-2">Bank Accounts: {totalBanks}</h2>
+        <div className="flex flex-col gap-2">
+          <p className="total-balance-label">Total Current Balance</p>
+
+          <div className="total-balance-amount flex-center gap-2">
+            <AnimatedCounter amount={totalCurrentBalance} />
+          </div>
+          
         </div>
       </div>
     </section>
